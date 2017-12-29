@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MVPDemo</string>
+    <string name="action_settings">Settings</string>
+
+    <!--login-->
+    <string name="login_para_error">信息输入错误</string>
+    <string name="login_server_error">服务端异常</string>
+</resources>

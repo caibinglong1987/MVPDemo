@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/abc_button_inset_vertical_material"
+    android:layout_marginRight="@dimen/abc_button_inset_vertical_material"
+    android:layout_marginTop="@dimen/abc_button_inset_vertical_material"
+    android:background="@color/white">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/imgHead"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        fresco:actualImageScaleType="focusCrop" />
+
+    <TextView
+        android:id="@+id/textReportShopName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/abc_action_bar_content_inset_material"
+        android:layout_toRightOf="@+id/imgHead"
+        android:paddingTop="@dimen/abc_button_inset_vertical_material"
+        android:text="毛里湖野生鱼馆"
+        android:textColor="@color/abc_primary_text_material_light" />
+
+    <TextView
+        android:id="@+id/textReportShopAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textReportShopName"
+        android:layout_marginLeft="@dimen/abc_action_bar_content_inset_material"
+        android:layout_toRightOf="@+id/imgHead"
+        android:text="火车站斜对面泽云广场(农业银行旁)" />
+
+    <TextView
+        android:id="@+id/textDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/abc_action_bar_content_inset_material"
+        android:text="2.4km" />
+
+
+    <TextView
+        android:id="@+id/textReportNums"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textReportShopAddress"
+        android:layout_marginLeft="@dimen/abc_action_bar_content_inset_material"
+        android:layout_toRightOf="@+id/imgHead"
+        android:paddingBottom="@dimen/abc_button_inset_vertical_material"
+        android:paddingTop="@dimen/abc_button_inset_vertical_material"
+        android:text="被投诉2次" />
+
+
+</RelativeLayout>
