@@ -1,42 +1,44 @@
 package com.hexing.mvpdemo.presenter;
 
-import com.hexing.mvpdemo.bean.UserInfoBean;
+import com.hexing.libhexbase.activity.BasePresenter;
 import com.hexing.mvpdemo.model.LoginBusiness;
-import com.hexing.mvpdemo.presenter.contract.LoginContract;
+import com.hexing.mvpdemo.utils.ServerHelper;
+import com.hexing.mvpdemo.view.LoginView;
+
 
 /**
  * @author by HEC271
  *         on 2017/12/29.
  */
 
-public class LoginPresenter implements LoginContract.Presenter {
-    private LoginContract.View loginView;
-    private LoginBusiness loginBusiness;
+public class LoginPresenter extends BasePresenter<LoginView> {
 
-    public LoginPresenter(LoginContract.View loginView) {
-        this.loginView = loginView;
-        this.loginView.setPresenter(this);
-        loginBusiness = new LoginBusiness(this);
+    private LoginBusiness business;
+
+    public LoginPresenter(LoginView loginView) {
+        attachView(loginView);
+        business = new LoginBusiness();
     }
 
     @Override
-    public void start() {
-
+    public void attachView(LoginView view) {
+        super.attachView(view);
     }
 
-    @Override
     public void login(String username, String password) {
-        this.loginView.showProgress();
-        loginBusiness.login(username, password);
+        mvpView.get().showLoading();
+        business.login(username, password, new ServerHelper.DataLoadListener() {
+            @Override
+            public void failure(Exception e) {
+                mvpView.get().hideLoading();
+            }
+
+            @Override
+            public void success(String result) {
+                mvpView.get().hideLoading();
+                mvpView.get().setData(result);
+            }
+        });
     }
 
-    public void showUserInfo(UserInfoBean bean) {
-        this.loginView.showUserInfo(bean);
-        this.loginView.hideProgress();
-    }
-
-    public void showError(int resourceId){
-        this.loginView.hideProgress();
-        this.loginView.showError(resourceId);
-    }
 }

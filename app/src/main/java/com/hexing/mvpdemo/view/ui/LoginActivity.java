@@ -2,25 +2,22 @@ package com.hexing.mvpdemo.view.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.hexing.libhexbase.activity.HexMVPBaseActivity;
 import com.hexing.mvpdemo.R;
 import com.hexing.mvpdemo.bean.UserInfoBean;
 import com.hexing.mvpdemo.presenter.LoginPresenter;
-import com.hexing.mvpdemo.presenter.contract.LoginContract;
-import com.hexing.mvpdemo.view.LoadingDialog;
+import com.hexing.mvpdemo.view.LoginView;
 
 /**
  * @author by HEC271
  *         on 2017/12/29.
  */
 
-public class LoginActivity extends AppCompatActivity implements LoginContract.View, View.OnClickListener {
-    private LoginContract.Presenter presenter;
+public class LoginActivity extends HexMVPBaseActivity<LoginPresenter> implements LoginView, View.OnClickListener {
     private TextView tvLogin;
     private EditText etUsername, etPassword;
 
@@ -32,39 +29,37 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         tvLogin.setOnClickListener(this);
-        //this.presenter.login("", "");
-        new LoginPresenter(this);
     }
 
     @Override
-    public void setPresenter(LoginContract.Presenter presenter) {
-        this.presenter = presenter;
+    protected LoginPresenter createPresenter() {
+        return new LoginPresenter(this);
     }
 
     @Override
-    public void showProgress() {
-        LoadingDialog.showSysLoadingDialog(this, "");
-    }
-
-    @Override
-    public void hideProgress() {
-        LoadingDialog.cancelLoadingDialog();
-    }
-
-    @Override
-    public void showUserInfo(UserInfoBean userInfoBean) {
+    public void setData(String data) {
 
     }
 
     @Override
-    public void showError(int resourcesId) {
-        Toast.makeText(this, resourcesId, Toast.LENGTH_LONG).show();
+    public void setUser(UserInfoBean user) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tvLogin) {
-            this.presenter.login(etUsername.getText().toString(), etPassword.getText().toString());
+            mvpPresenter.login(etUsername.getText().toString(), etPassword.getText().toString());
         }
     }
 }

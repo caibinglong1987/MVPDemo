@@ -9,7 +9,7 @@ import java.io.Serializable;
  *         on 2017/12/28.
  */
 
-public class StudentBean implements Serializable {
+public class PictureBean implements Serializable {
     @SerializedName("_id")
     private String id;
     @SerializedName("createdAt")
@@ -104,7 +104,7 @@ public class StudentBean implements Serializable {
 
     @Override
     public String toString() {
-        return "StudentBean{" +
+        return "PictureBean{" +
                 "id='" + id + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", desc='" + desc + '\'' +

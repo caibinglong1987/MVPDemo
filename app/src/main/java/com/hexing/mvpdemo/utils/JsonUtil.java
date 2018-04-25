@@ -5,8 +5,6 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.hexing.mvpdemo.bean.CommonListResult;
-import com.hexing.mvpdemo.bean.StudentBean;
 
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;

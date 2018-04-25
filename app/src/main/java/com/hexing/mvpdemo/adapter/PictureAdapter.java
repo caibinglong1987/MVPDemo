@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hexing.mvpdemo.R;
-import com.hexing.mvpdemo.bean.StudentBean;
+import com.hexing.mvpdemo.bean.PictureBean;
 import com.hexing.mvpdemo.utils.FrescoUtils;
 
 import java.util.List;
@@ -20,9 +20,9 @@ import java.util.List;
  *         on 2017/12/28.
  */
 
-public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PictureAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<StudentBean> gankList;
+    private List<PictureBean> gankList;
 
     private Context mContext;
 
@@ -39,7 +39,7 @@ public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         isShowFooter = showFooter;
     }
 
-    public StudentAdapter(List<StudentBean> ganks, Context mContext) {
+    public PictureAdapter(List<PictureBean> ganks, Context mContext) {
         this.gankList = ganks;
         this.mContext = mContext;
     }

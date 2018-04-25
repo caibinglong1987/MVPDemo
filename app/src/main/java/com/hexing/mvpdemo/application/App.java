@@ -1,15 +1,15 @@
 package com.hexing.mvpdemo.application;
 
-import android.app.Application;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.hexing.libhexbase.application.HexApplication;
 
 /**
  * @author by HEC271
  *         on 2017/12/28.
  */
 
-public class App extends Application {
+public class App extends HexApplication {
     @Override
     public void onCreate() {
         super.onCreate();

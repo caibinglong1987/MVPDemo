@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.hexing.mvpdemo.view.ui.LoginActivity;
-import com.hexing.mvpdemo.view.ui.StudentActivity;
 
 public class MainActivity extends AppCompatActivity {
 
