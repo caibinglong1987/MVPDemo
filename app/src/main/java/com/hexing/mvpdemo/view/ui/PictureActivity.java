@@ -38,6 +38,7 @@ public class PictureActivity extends HexMVPBaseActivity<PicturePresenter> implem
         initView();
     }
 
+
     private void initView() {
         refreshLayout = findViewById(R.id.tabSwipeRefresh);
         recyclerView = findViewById(R.id.tabRecyler);
@@ -62,7 +63,6 @@ public class PictureActivity extends HexMVPBaseActivity<PicturePresenter> implem
         //添加分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(
                 this, DividerItemDecoration.VERTICAL));
-        //设置adapter
         recyclerView.setAdapter(adapter);
         mvpPresenter.getPictureList(20, 0);
     }

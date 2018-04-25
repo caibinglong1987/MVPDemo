@@ -9,7 +9,6 @@ import com.hexing.mvpdemo.model.PictureBusiness;
 import com.hexing.mvpdemo.utils.ServerHelper;
 import com.hexing.mvpdemo.view.PictureView;
 
-import java.util.List;
 
 /**
  * @author caibinglong
@@ -31,18 +30,25 @@ public class PicturePresenter extends BasePresenter<PictureView> {
     }
 
     public void getPictureList(int pageSize, int pageIndex) {
-        mvpView.get().showLoading();
+        if (getView() != null) {
+            getView().showLoading();
+        }
         business.getPictureList(pageSize, pageIndex, new ServerHelper.DataLoadListener() {
             @Override
             public void failure(Exception e) {
-                mvpView.get().hideLoading();
+                if (getView() != null) {
+                    getView().hideLoading();
+                }
             }
 
             @Override
             public void success(String result) {
-                mvpView.get().hideLoading();
-                CommonListResult<PictureBean> list = GJsonUtil.fromJson(result, new TypeToken<CommonListResult<PictureBean>>(){}.getType());
-                mvpView.get().showData(list.results);
+                if (getView() != null) {
+                    getView().hideLoading();
+                    CommonListResult<PictureBean> list = GJsonUtil.fromJson(result, new TypeToken<CommonListResult<PictureBean>>() {
+                    }.getType());
+                    getView().showData(list.results);
+                }
             }
         });
     }
