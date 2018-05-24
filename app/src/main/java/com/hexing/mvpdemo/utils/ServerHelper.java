@@ -15,13 +15,14 @@ import org.json.JSONObject;
 public class ServerHelper extends AbsHttpCallback {
     private DataLoadListener listener;
 
-    public void getStudent(int pageSize, int pageIndex) {
+    public String getStudent(int pageSize, int pageIndex) {
         String url = "http://gank.io/api/data/福利/" + pageSize + "/" + pageIndex;
-        HexOkHexHttpManager.getInstance().getRequest(url, null);
+        return HexOkHexHttpManager.getInstance().getRequest(url, null);
     }
 
     /**
      * 模拟登录
+     *
      * @param json json
      */
     public void login(JSONObject json) {

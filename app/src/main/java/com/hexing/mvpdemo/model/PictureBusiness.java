@@ -15,8 +15,7 @@ public class PictureBusiness {
         serverHelper = new ServerHelper();
     }
 
-    public void getPictureList(int pageSize, int pageIndex, final ServerHelper.DataLoadListener listener) {
-        serverHelper.getStudent(pageSize, pageIndex);
-        serverHelper.setListener(listener);
+    public String getPictureList(int pageSize, int pageIndex) {
+        return serverHelper.getStudent(pageSize, pageIndex);
     }
 }
