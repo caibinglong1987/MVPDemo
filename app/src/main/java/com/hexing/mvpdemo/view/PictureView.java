@@ -1,6 +1,5 @@
 package com.hexing.mvpdemo.view;
 
-import com.hexing.libhexbase.view.BaseView;
 import com.hexing.mvpdemo.bean.PictureBean;
 
 import java.util.List;
@@ -11,6 +10,6 @@ import java.util.List;
  *         desc desc
  */
 
-public interface PictureView extends BaseView {
+public interface PictureView {
     void showData(List<PictureBean> list);
 }

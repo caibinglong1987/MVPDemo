@@ -14,7 +14,7 @@ import org.junit.Test;
 public class LoginPresenterTest{
     @Test
     public void testLogin() {
-        new LoginPresenter(null).login("","");
+        new LoginPresenter(null).login(null,null);
     }
 
     public LoginPresenterTest() {

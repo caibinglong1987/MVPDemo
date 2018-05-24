@@ -7,13 +7,13 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
+import android.view.View;
 
 import com.hexing.libhexbase.activity.HexMVPBaseActivity;
 import com.hexing.mvpdemo.R;
 import com.hexing.mvpdemo.adapter.PictureAdapter;
 import com.hexing.mvpdemo.bean.PictureBean;
 import com.hexing.mvpdemo.presenter.PicturePresenter;
-import com.hexing.mvpdemo.view.LoadingDialog;
 import com.hexing.mvpdemo.view.PictureView;
 
 import java.util.ArrayList;
@@ -30,6 +30,7 @@ public class PictureActivity extends HexMVPBaseActivity<PicturePresenter> implem
     private List<PictureBean> dataList = new ArrayList<>();
     private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout;
+    private int pageIndex = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,6 @@ public class PictureActivity extends HexMVPBaseActivity<PicturePresenter> implem
         setContentView(R.layout.fragment_beauty);
         initView();
     }
-
 
     private void initView() {
         refreshLayout = findViewById(R.id.tabSwipeRefresh);
@@ -64,7 +64,25 @@ public class PictureActivity extends HexMVPBaseActivity<PicturePresenter> implem
         recyclerView.addItemDecoration(new DividerItemDecoration(
                 this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
-        mvpPresenter.getPictureList(20, 0);
+        mvpPresenter.getPictureList(20, pageIndex);
+        adapter.setListener(new PictureAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+
+            @Override
+            public void loadMore() {
+                ++pageIndex;
+                mvpPresenter.getPictureList(20, pageIndex);
+
+            }
+        });
     }
 
     @Override
@@ -74,22 +92,15 @@ public class PictureActivity extends HexMVPBaseActivity<PicturePresenter> implem
 
     @Override
     public void showData(List<PictureBean> list) {
+        refreshLayout.setRefreshing(false);
         dataList.addAll(list);
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void showLoading() {
-        LoadingDialog.showSysLoadingDialog(this, "Loading", true);
-    }
-
-    @Override
-    public void hideLoading() {
-        LoadingDialog.cancelLoadingDialog();
-    }
-
-    @Override
     public void onRefresh() {
-
+        pageIndex = 0;
+        dataList.clear();
+        mvpPresenter.getPictureList(20, pageIndex);
     }
 }

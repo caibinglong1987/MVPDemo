@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hexing.mvpdemo.R;
 import com.hexing.mvpdemo.bean.PictureBean;
-import com.hexing.mvpdemo.utils.FrescoUtils;
 
 import java.util.List;
 
@@ -55,6 +54,8 @@ public class PictureAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         void onItemClick(View view, int position);
 
         void onItemLongClick(View view, int position);
+
+        void loadMore();
     }
 
 
@@ -74,8 +75,8 @@ public class PictureAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ItemViewHolder) {
-            FrescoUtils.loadImage(Uri.parse(gankList.get(position).getUrl()), ((ItemViewHolder) holder).imgHead);
-//            ((ItemViewHolder) holder).imgHead.setImageURI(Uri.parse(gankList.get(position).getUrl()));
+           // FrescoUtils.loadImage(Uri.parse(gankList.get(position).getUrl()), ((ItemViewHolder) holder).imgHead);
+            ((ItemViewHolder) holder).imgHead.setImageURI(Uri.parse(gankList.get(position).getUrl()));
             ((ItemViewHolder) holder).reportshopname.setText(gankList.get(position).getCreatedAt());
             ((ItemViewHolder) holder).reportnums.setText(gankList.get(position).getPublishedAt());
             ((ItemViewHolder) holder).address.setText(gankList.get(position).getType());
@@ -83,6 +84,12 @@ public class PictureAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         } else if (holder instanceof FooterViewHolder) {
             ((FooterViewHolder) holder).textFooter.setText("加载中...");
+            ((FooterViewHolder) holder).textFooter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.loadMore();
+                }
+            });
         }
 
         //点击事件回调
@@ -103,6 +110,7 @@ public class PictureAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     return false;
                 }
             });
+
         }
     }
 

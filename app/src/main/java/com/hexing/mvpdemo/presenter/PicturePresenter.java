@@ -24,27 +24,17 @@ public class PicturePresenter extends BasePresenter<PictureView> {
         business = new PictureBusiness();
     }
 
-    @Override
-    public void attachView(PictureView view) {
-        super.attachView(view);
-    }
-
     public void getPictureList(int pageSize, int pageIndex) {
-        if (getView() != null) {
-            getView().showLoading();
-        }
+
         business.getPictureList(pageSize, pageIndex, new ServerHelper.DataLoadListener() {
             @Override
             public void failure(Exception e) {
-                if (getView() != null) {
-                    getView().hideLoading();
-                }
+
             }
 
             @Override
             public void success(String result) {
                 if (getView() != null) {
-                    getView().hideLoading();
                     CommonListResult<PictureBean> list = GJsonUtil.fromJson(result, new TypeToken<CommonListResult<PictureBean>>() {
                     }.getType());
                     getView().showData(list.results);

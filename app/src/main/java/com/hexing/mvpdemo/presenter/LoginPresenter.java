@@ -26,31 +26,27 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             getView().showLoading();
         }
         serverHelper = new ServerHelper();
-        login(username, password, new ServerHelper.DataLoadListener() {
-            @Override
-            public void failure(Exception e) {
-                if (getView() != null) {
-                    getView().hideLoading();
-                }
-            }
-
-            @Override
-            public void success(String result) {
-                if (getView() != null) {
-                    getView().showLoading();
-                    getView().setData(result);
-                }
-            }
-        });
-    }
-
-    public void login(String username, String password, ServerHelper.DataLoadListener listener) {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("username", username);
             jsonObject.put("password", password);
             serverHelper.login(jsonObject);
-            serverHelper.setListener(listener);
+            serverHelper.setListener(new ServerHelper.DataLoadListener() {
+                @Override
+                public void failure(Exception e) {
+                    if (getView() != null) {
+                        getView().hideLoading();
+                    }
+                }
+
+                @Override
+                public void success(String result) {
+                    if (getView() != null) {
+                        getView().showLoading();
+                        getView().setData(result);
+                    }
+                }
+            });
         } catch (JSONException e) {
             e.printStackTrace();
         }
