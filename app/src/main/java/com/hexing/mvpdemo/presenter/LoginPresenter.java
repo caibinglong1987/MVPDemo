@@ -1,9 +1,11 @@
 package com.hexing.mvpdemo.presenter;
 
 import com.hexing.libhexbase.activity.BasePresenter;
-import com.hexing.mvpdemo.model.LoginBusiness;
 import com.hexing.mvpdemo.utils.ServerHelper;
 import com.hexing.mvpdemo.view.LoginView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -13,22 +15,18 @@ import com.hexing.mvpdemo.view.LoginView;
 
 public class LoginPresenter extends BasePresenter<LoginView> {
 
-    public void setBusiness(LoginBusiness business) {
-        this.business = business;
-    }
-
-    private LoginBusiness business;
+    private ServerHelper serverHelper;
 
     public LoginPresenter(LoginView loginView) {
         attachView(loginView);
-        business = new LoginBusiness();
     }
 
     public void login(String username, String password) {
         if (getView() != null) {
             getView().showLoading();
         }
-        business.login(username, password, new ServerHelper.DataLoadListener() {
+        serverHelper = new ServerHelper();
+        login(username, password, new ServerHelper.DataLoadListener() {
             @Override
             public void failure(Exception e) {
                 if (getView() != null) {
@@ -44,6 +42,18 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                 }
             }
         });
+    }
+
+    public void login(String username, String password, ServerHelper.DataLoadListener listener) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("username", username);
+            jsonObject.put("password", password);
+            serverHelper.login(jsonObject);
+            serverHelper.setListener(listener);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 }
