@@ -1,6 +1,6 @@
 package com.hexing.mvpdemo.view;
 
-import com.hexing.mvpdemo.bean.PictureBean;
+import com.hexing.mvpdemo.model.bean.PictureBean;
 
 import java.util.List;
 

@@ -12,7 +12,7 @@ import android.view.View;
 import com.hexing.libhexbase.activity.HexMVPBaseActivity;
 import com.hexing.mvpdemo.R;
 import com.hexing.mvpdemo.adapter.PictureAdapter;
-import com.hexing.mvpdemo.bean.PictureBean;
+import com.hexing.mvpdemo.model.bean.PictureBean;
 import com.hexing.mvpdemo.presenter.PicturePresenter;
 import com.hexing.mvpdemo.view.PictureView;
 

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hexing.mvpdemo.R;
-import com.hexing.mvpdemo.bean.PictureBean;
+import com.hexing.mvpdemo.model.bean.PictureBean;
 
 import java.util.List;
 

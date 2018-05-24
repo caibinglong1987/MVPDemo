@@ -1,4 +1,4 @@
-package com.hexing.mvpdemo.bean;
+package com.hexing.mvpdemo.model.bean;
 
 /**
  * @author by HEC271

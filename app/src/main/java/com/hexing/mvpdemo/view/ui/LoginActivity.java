@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.hexing.libhexbase.activity.HexMVPBaseActivity;
 import com.hexing.mvpdemo.R;
-import com.hexing.mvpdemo.bean.UserInfoBean;
+import com.hexing.mvpdemo.model.bean.UserInfoBean;
 import com.hexing.mvpdemo.presenter.LoginPresenter;
 import com.hexing.mvpdemo.view.LoginView;
 

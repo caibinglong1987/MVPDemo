@@ -1,4 +1,4 @@
-package com.hexing.mvpdemo.bean;
+package com.hexing.mvpdemo.model.bean;
 
 import java.util.List;
 

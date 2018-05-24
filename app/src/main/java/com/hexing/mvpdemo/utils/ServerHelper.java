@@ -2,8 +2,8 @@ package com.hexing.mvpdemo.utils;
 
 import android.util.Log;
 
-import com.base.web.okhttp.OkHttpManager;
-import com.base.web.okhttp.HttpBusinessCallback;
+import com.cblong.http.HexOkHexHttpManager;
+import com.cblong.http.callback.AbsHttpCallback;
 
 import org.json.JSONObject;
 
@@ -12,13 +12,12 @@ import org.json.JSONObject;
  *         on 2017/12/28.
  */
 
-public class ServerHelper extends HttpBusinessCallback {
+public class ServerHelper extends AbsHttpCallback {
     private DataLoadListener listener;
-    private OkHttpManager httpManager = new OkHttpManager();
 
     public void getStudent(int pageSize, int pageIndex) {
         String url = "http://gank.io/api/data/福利/" + pageSize + "/" + pageIndex;
-        httpManager.getRequest(url, this);
+        HexOkHexHttpManager.getInstance().getRequest(url, null);
     }
 
     /**
@@ -27,7 +26,7 @@ public class ServerHelper extends HttpBusinessCallback {
      */
     public void login(JSONObject json) {
         String url = "http://gank.io/api/data/福利/50/5";
-        httpManager.postJsonRequest(url, json, hashCode(), this);
+        HexOkHexHttpManager.getInstance().postRequest(url, json);
     }
 
     @Override

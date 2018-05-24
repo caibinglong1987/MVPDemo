@@ -1,7 +1,7 @@
 package com.hexing.mvpdemo.view;
 
 import com.hexing.libhexbase.view.BaseView;
-import com.hexing.mvpdemo.bean.UserInfoBean;
+import com.hexing.mvpdemo.model.bean.UserInfoBean;
 
 /**
  * @author caibinglong
