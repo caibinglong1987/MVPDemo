@@ -13,6 +13,10 @@ import com.hexing.mvpdemo.view.LoginView;
 
 public class LoginPresenter extends BasePresenter<LoginView> {
 
+    public void setBusiness(LoginBusiness business) {
+        this.business = business;
+    }
+
     private LoginBusiness business;
 
     public LoginPresenter(LoginView loginView) {
@@ -20,23 +24,24 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         business = new LoginBusiness();
     }
 
-    @Override
-    public void attachView(LoginView view) {
-        super.attachView(view);
-    }
-
     public void login(String username, String password) {
-        mvpView.get().showLoading();
+        if (getView() != null) {
+            getView().showLoading();
+        }
         business.login(username, password, new ServerHelper.DataLoadListener() {
             @Override
             public void failure(Exception e) {
-                mvpView.get().hideLoading();
+                if (getView() != null) {
+                    getView().hideLoading();
+                }
             }
 
             @Override
             public void success(String result) {
-                mvpView.get().hideLoading();
-                mvpView.get().setData(result);
+                if (getView() != null) {
+                    getView().showLoading();
+                    getView().setData(result);
+                }
             }
         });
     }
